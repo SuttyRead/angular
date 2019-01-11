@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   loginAuth(data) {
     this.userForm = new UserForm(data.login, data.password);
-    this.http.post('http://localhost:8090/login', this.userForm).subscribe(value => this.token = value['value']);
+    console.log(this.userForm);
+    this.http.post('http://localhost:9000/login', this.userForm);
     // console.log('Token = ' + this.token);
   }
 
