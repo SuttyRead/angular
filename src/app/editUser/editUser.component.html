@@ -1,0 +1,51 @@
+<div class="col-md-2">
+  <form [formGroup]="addForm" novalidate class="form">
+    <div class="form-group">
+      <input type="hidden" formControlName="id" placeholder="Id" name="id" class="form-control" id="id">
+    </div>
+    <div class="form-group">
+      <label for="login">Login:</label>
+      <input type="text" formControlName="login" placeholder="Login" name="login" class="form-control" id="login">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" placeholder="Password" name="password" class="form-control"
+             id="password">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First name:</label>
+      <input type="text" formControlName="firstName" placeholder="First name" name="firstName" class="form-control"
+             id="firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last name:</label>
+      <input type="text" formControlName="lastName" placeholder="Last name" name="lastName" class="form-control"
+             id="lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="birthday">Birthday:</label>
+      <input type="date" formControlName="birthday" placeholder="Birthday" name="birthday" class="form-control"
+             id="birthday">
+    </div>
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select name="roleName" id="role"
+              class="form-control">
+        <option formControlName="role" *ngFor="let role of roles">{{role.name}}</option>
+      </select>
+    </div>
+    <button class="btn btn-success" (click)="edit(addForm.value)">Save</button>
+    <button class="btn btn-success" (click)="back()">Cancel</button>
+
+
+    <p>Form value: {{ addForm.value | json }}</p>
+  </form>
+</div>

@@ -1,0 +1,9 @@
+fieldset {
+  border: 1px solid white;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  width: 200px;
+}
+
+
