@@ -7,51 +7,80 @@
 
     <div class="form-group">
       <label for="login">Login:</label>
-      <input type="text" formControlName="login" placeholder="Login" name="login" class="form-control" id="login">
+      <input type="text" formControlName="login" placeholder="Login" name="login" class="form-control" id="login"
+             pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['login'].valid && !registrationForm.controls['login'].untouched">Login
+      invalid
+    </div>
     <div class="form-group">
       <label for="password">Password:</label>
       <input type="password" formControlName="password" placeholder="Password" name="password" class="form-control"
-             id="password">
+             pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+             id="password" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['password'].valid && !registrationForm.controls['password'].untouched">
+      Password invalid
+    </div>
     <div class="form-group">
       <label for="confirmPassword">Confirm password:</label>
-      <input type="password" formControlName="confirmPassword" placeholder="Confirm password" name="confirmPassword" class="form-control"
-             id="confirmPassword">
+      <input type="password" formControlName="confirmPassword" placeholder="Confirm password" name="confirmPassword"
+             class="form-control"
+             pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+             id="confirmPassword" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['confirmPassword'].valid && !registrationForm.controls['confirmPassword'].untouched">
+      Confirm
+      password invalid
+    </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email"
+             pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*\.\w{2,4}" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['email'].valid && !registrationForm.controls['email'].untouched">Email
+      invalid
+    </div>
     <div class="form-group">
       <label for="firstName">First name:</label>
       <input type="text" formControlName="firstName" placeholder="First name" name="firstName" class="form-control"
-             id="firstName">
+             pattern="^[A-Z]{1}[a-z]{1,25}"
+             id="firstName" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['firstName'].valid && !registrationForm.controls['firstName'].untouched">
+      FirstName invalid
+    </div>
     <div class="form-group">
       <label for="lastName">Last name:</label>
       <input type="text" formControlName="lastName" placeholder="Last name" name="lastName" class="form-control"
-             id="lastName">
+             pattern="^[A-Z]{1}[a-z]{1,25}"
+             id="lastName" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['lastName'].valid && !registrationForm.controls['lastName'].untouched">Last
+      name invalid
+    </div>
     <div class="form-group">
       <label for="birthday">Birthday:</label>
       <input type="date" formControlName="birthday" placeholder="Birthday" name="birthday" class="form-control"
-             id="birthday">
+             id="birthday" required>
     </div>
-
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!registrationForm.controls['birthday'].valid && !registrationForm.controls['birthday'].untouched">
+      Birthday invalid
+    </div>
     <div class="col-sm-6">
       <div class="g-recaptcha"
            data-sitekey="6LcZDYAUAAAAADb8KgCHNMpBC-rklAFI36qbweTb">
       </div>
     </div>
 
-    <button class="btn btn-success" (click)="registration()">Save</button>
+    <button class="btn btn-success" [disabled]="!registrationForm.valid" (click)="registration()">Save</button>
     <button class="btn btn-success" (click)="back()">Cancel</button>
 
 

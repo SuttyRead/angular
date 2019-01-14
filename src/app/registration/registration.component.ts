@@ -25,14 +25,14 @@ export class RegistrationComponent implements OnInit {
     this.role = new Role(2, 'USER');
 
     this.registrationForm = this.formBuilder.group({
-      // id: [''],
-      login: ['', Validators.required],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      birthday: ['', [Validators.required]],
+      login: ['', [Validators.required, Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$')]],
+      password: ['', [Validators.required, Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]],
+      confirmPassword: ['', [Validators.required,
+        Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]],
+      email: ['', [Validators.required, Validators.pattern('\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}')]],
+      firstName: ['', [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{1,25}')]],
+      lastName: ['', [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{1,25}')]],
+      birthday: ['', Validators.required]
     });
 
 
