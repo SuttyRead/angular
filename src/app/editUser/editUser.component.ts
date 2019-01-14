@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../user.service';
-import {User} from '../model/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Role} from '../model/role';
 
@@ -13,12 +12,11 @@ import {Role} from '../model/role';
 export class EditUserComponent implements OnInit {
 
   id;
-  user: User;
   addForm: FormGroup;
   roles: Role[];
 
-  constructor (private activateRoute: ActivatedRoute, private userService: UserService,
-               private router: Router, private formBuilder: FormBuilder) {
+  constructor(private activateRoute: ActivatedRoute, private userService: UserService,
+              private router: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -37,14 +35,12 @@ export class EditUserComponent implements OnInit {
       role: ['', [Validators.required]]
     });
 
-
   }
 
-  edit(form: FormGroup) {
-    console.log(form);
-    this.user = this.addForm.value;
-    this.userService.put(form);
-
+  edit() {
+    console.log(this.addForm.value);
+    this.userService.put(this.addForm.value);
+    this.router.navigate(['/admin']);
   }
 
   back() {

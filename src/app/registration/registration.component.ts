@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     this.role = new Role(2, 'USER');
 
     this.registrationForm = this.formBuilder.group({
-      id: [''],
+      // id: [''],
       login: ['', Validators.required],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
@@ -38,12 +38,12 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  save(form: FormGroup) {
-    // @ts-ignore
-    this.user = form;
-    this.user.role = this.role;
-    console.log(this.user);
-    this.userService.save(this.user);
+  registration() {
+    console.log(this.registrationForm.value);
+    this.userService.save(this.registrationForm.value)
+      .subscribe(() => {
+        this.router.navigate(['/login']);
+      });
   }
 
   back() {

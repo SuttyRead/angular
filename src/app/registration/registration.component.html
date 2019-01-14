@@ -45,8 +45,13 @@
              id="birthday">
     </div>
 
-    <button class="btn btn-success" (click)="save(registrationForm.value)">Save</button>
+    <div class="col-sm-6">
+      <div class="g-recaptcha"
+           data-sitekey="6LcZDYAUAAAAADb8KgCHNMpBC-rklAFI36qbweTb">
+      </div>
+    </div>
 
+    <button class="btn btn-success" (click)="registration()">Save</button>
     <button class="btn btn-success" (click)="back()">Cancel</button>
 
 
