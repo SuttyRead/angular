@@ -1,0 +1,33 @@
+<a href="/add">Add user</a>
+
+<div *ngIf="editSuccess" class="alert alert-success" role="alert">Edit successfully</div>
+<!--<div *ngIf="deleteSuccess" class="alert alert-success" role="alert">Delete successfully</div>-->
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+
+    <th>Login</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let user of users">
+    <td>{{user.login}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{calculateAge(user.birthday)}}</td>
+    <td>{{user.role.name}}</td>
+    <td>
+      <button type="submit" class="btn btn-primary" (click)="edit(user.id)">Edit</button>
+      <button type="submit" class="btn btn-primary" (click)="delete(user.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+

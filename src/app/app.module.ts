@@ -13,7 +13,14 @@ import {MainComponent} from './main/main.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditUserComponent} from './editUser/editUser.component';
 import {AddComponent} from './add/add.component';
-
+import {LoginGuard} from './guards/login.guard';
+import {AddGuard} from './guards/add.guard';
+import {EditGuard} from './guards/edit.guard';
+import {AdminGuard} from './guards/admin.guard';
+import {RegistrationGuard} from './guards/registration.guard';
+import {UserGuard} from './guards/user.guard';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {RecaptchaModule} from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -26,6 +33,7 @@ import {AddComponent} from './add/add.component';
     MainComponent,
     EditUserComponent,
     AddComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,8 +41,9 @@ import {AddComponent} from './add/add.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RecaptchaModule
   ],
-  providers: [],
+  providers: [LoginGuard, AddGuard, EditGuard, AdminGuard, RegistrationGuard, UserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

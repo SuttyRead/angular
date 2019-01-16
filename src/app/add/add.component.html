@@ -1,0 +1,96 @@
+<div class="col-md-2">
+  <h2 class="text-center">Add User</h2>
+  <form [formGroup]="addForm">
+
+    <div *ngIf="loginAlreadyExist" class="alert alert-danger" role="alert">Login already exists</div>
+
+    <div class="form-group">
+      <label for="login">Login:</label>
+      <input type="text" formControlName="login" placeholder="Enter login" name="login" class="form-control" id="login"
+             pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['login'].valid && !addForm.controls['login'].untouched">Uppercase and lowercase
+      letter.
+      Must be 2-20 characters. Without specifically characters #,$,% and so on. For example SuttyRead
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" placeholder="Enter password" name="password"
+             pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+             class="form-control" id="password" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['password'].valid && !addForm.controls['password'].untouched">Password must be have
+      lowercase and uppercase Latin letters, number. Minimum 8 characters
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm password:</label>
+      <input type="password" formControlName="confirmPassword" placeholder="Enter confirm password"
+             pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+             name="confirmPassword"
+             class="form-control" id="confirmPassword" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['confirmPassword'].valid && !addForm.controls['confirmPassword'].untouched">Password
+      must be have lowercase and uppercase Latin letters, number. Minimum 8 characters
+    </div>
+
+    <div *ngIf="passwordNotMatch" class="alert alert-danger" role="alert">Password not match</div>
+
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" formControlName="email" placeholder="Enter Email" name="email" class="form-control"
+             pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*\.\w{2,4}"
+             id="email" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['email'].valid && !addForm.controls['email'].untouched">Enter correct email. Email
+      must be have @. For example SuttyRead@gmail.com
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" formControlName="firstName" placeholder="Enter First Name" name="firstName"
+             pattern="^[A-Z]{1}[a-z]{1,25}"
+             class="form-control"
+             id="firstName" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['firstName'].valid && !addForm.controls['firstName'].untouched">Only latin letter.
+      First letter must be uppercase. For example Sutty
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" formControlName="lastName" placeholder="Enter Last name" name="lastName" class="form-control"
+             pattern="^[A-Z]{1}[a-z]{1,25}"
+             id="lastName" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['lastName'].valid && !addForm.controls['lastName'].untouched">Only latin letter. First
+      letter must be uppercase. For example Sutty
+    </div>
+
+    <div class="form-group">
+      <label for="birthday">Birthday:</label>
+      <input formControlName="birthday" type="date" placeholder="Enter birthday" name="birthday" class="form-control"
+             id="birthday" required>
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="!addForm.controls['birthday'].valid && !addForm.controls['birthday'].untouched">Birthday invalid
+    </div>
+
+    <div *ngIf="incorrectBirthday" class="alert alert-danger" role="alert">Birthday incorrect</div>
+
+    <button class="btn btn-success" [disabled]="!addForm.valid" (click)="add()">Save</button>
+    <button class="btn btn-success" (click)="back()">Cancel</button>
+
+  </form>
+
+</div>
+
+
+

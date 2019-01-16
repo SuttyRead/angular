@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Angular</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Main</a>
+      </li>
+
+      <li *ngIf="!login" class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+
+      <li *ngIf="!login" class="nav-item">
+        <a class="nav-link" href="/registration">Registration</a>
+      </li>
+
+      <li *ngIf="role === 'ADMIN'" class="nav-item">
+        <a class="nav-link" href="/admin">Home</a>
+      </li>
+
+      <li *ngIf="role === 'USER'" class="nav-item">
+        <a class="nav-link" href="/user">Home</a>
+      </li>
+    </ul>
+
+    <p *ngIf="login != null">
+      {{login}},
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </p>
+  </div>
+</nav>

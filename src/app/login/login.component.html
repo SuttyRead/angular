@@ -1,17 +1,20 @@
-<div>
-  <form #userForLogin="ngForm" (ngSubmit)="loginAuth(userForLogin.value)" class="col-5">
+<div class="col-md-2">
+
+  <div *ngIf="incorrect" class="alert alert-danger" role="alert">Login or password incorrect</div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="loginAuth()" class="form">
     <div class="form-group">
       <label for="login">Login:</label>
-      <input type="text" class="form-control" id="login"
-             placeholder="Enter login" name="login" ngModel required>
+      <input type="text" formControlName="login" placeholder="Login" name="login" class="form-control" id="login"
+             pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter password"
-             name="password" ngModel required>
+      <input type="password" formControlName="password" placeholder="Password" name="password" class="form-control"
+             pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+             id="password" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-success">Log in</button>
   </form>
 </div>
-
 

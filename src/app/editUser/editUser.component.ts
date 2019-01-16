@@ -14,6 +14,8 @@ export class EditUserComponent implements OnInit {
   id;
   addForm: FormGroup;
   roles: Role[];
+  dateNow = new Date();
+  incorrectBirthday: boolean;
 
   constructor(private activateRoute: ActivatedRoute, private userService: UserService,
               private router: Router, private formBuilder: FormBuilder) {
@@ -22,6 +24,9 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.roles = [new Role(1, 'ADMIN'), new Role(2, 'USER')];
     this.activateRoute.params.subscribe(params => this.id = params['id']);
+    if (this.id == null) {
+      this.router.navigate(['/admin'], {queryParams: {editSuccess: 'true'}});
+    }
     this.userService.getUserById(this.id).subscribe(user => this.addForm.setValue(user));
 
     this.addForm = this.formBuilder.group({
@@ -38,13 +43,22 @@ export class EditUserComponent implements OnInit {
   }
 
   edit() {
-    console.log(this.addForm.value);
+    if (this.checkBirthday(this.addForm.value.birthday) < 0) {
+      this.incorrectBirthday = true;
+      return;
+    }
     this.userService.put(this.addForm.value);
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin'], {queryParams: {editSuccess: true}});
+    location.reload();
   }
 
   back() {
     this.router.navigate(['/admin']);
+  }
+
+  checkBirthday(date) {
+    const newDate = new Date(date);
+    return this.dateNow.valueOf() - newDate.valueOf();
   }
 
 }
